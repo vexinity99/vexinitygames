@@ -1,43 +1,327 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-7FN7LEVWXD"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-
         gtag('config', 'G-7FN7LEVWXD');
     </script>
-    <title>Etch a Sketch | Seraph</title>
+    <title>Etch a Sketch | Vexinity</title>
     <link rel="shortcut icon" href="../../images/ico.ico" type="image/x-icon">
     <script src="../../storage/js/cloak.js"></script>
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="favicon.ico" />
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
+    
+    <!-- Modern clean font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-red: #ff3a3a;
+            --dark-red: #cc0000;
+            --bg-dark: #0f0f0f;
+            --card-bg: #1a1a1a;
+            --text-light: #ffffff;
+            --text-gray: #aaaaaa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .title {
+            color: var(--primary-red);
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-shadow: 0 0 10px rgba(255, 58, 58, 0.5);
+        }
+
+        .main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
+            max-width: 600px;
+            padding: 0 20px;
+        }
+
+        .settings {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 15px;
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        #colorPicker {
+            width: 50px;
+            height: 40px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            border: 2px solid var(--primary-red);
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        button:hover {
+            background-color: var(--primary-red);
+            transform: translateY(-2px);
+        }
+
+        button.active {
+            background-color: var(--primary-red);
+            color: white;
+        }
+
+        .size-value {
+            color: var(--text-light);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 80px;
+        }
+
+        #sizeSlider {
+            width: 150px;
+            height: 10px;
+            -webkit-appearance: none;
+            background: var(--bg-dark);
+            outline: none;
+            border: 2px solid var(--primary-red);
+            border-radius: 10px;
+        }
+
+        #sizeSlider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            background: var(--primary-red);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .grid {
+            display: grid;
+            width: 100%;
+            max-width: 500px;
+            height: 500px;
+            background-color: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            border: 2px solid var(--primary-red);
+        }
+
+        .grid-item {
+            background-color: white;
+            border: 1px solid #eee;
+        }
+
+        .footer {
+            margin: 30px 0;
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        .footer a {
+            color: var(--primary-red);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            .title {
+                font-size: 2rem;
+            }
+            
+            .grid {
+                height: 400px;
+            }
+            
+            .settings {
+                gap: 8px;
+                padding: 10px;
+            }
+            
+            button {
+                padding: 8px 12px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
     <header class="header">
-      <h1 class="title">etch a sketch</h1>
+        <h1 class="title">Etch a Sketch</h1>
     </header>
     <main class="main">
-      <div class="settings">
-        <input id="colorPicker" type="color" value="#FFFFFF" />
-        <button id="colorBtn">color</button>
-        <button id="rainbowBtn">rainbow</button>
-        <button id="eraserBtn">eraser</button>
-        <button id="clearBtn">clear</button>
-        <div id="sizeValue" class="size-value">16 x 16</div>
-        <input id="sizeSlider" type="range" value="16" min="1" max="64" />
-      </div>
-      <div id="grid" class="grid"></div>
+        <div class="settings">
+            <input id="colorPicker" type="color" value="#FFFFFF" />
+            <button id="colorBtn" class="active">Color</button>
+            <button id="rainbowBtn">Rainbow</button>
+            <button id="eraserBtn">Eraser</button>
+            <button id="clearBtn">Clear</button>
+            <div id="sizeValue" class="size-value">16 x 16</div>
+            <input id="sizeSlider" type="range" value="16" min="1" max="64" />
+        </div>
+        <div id="grid" class="grid"></div>
     </main>
 
     <footer class="footer">
-      <a href="https://github.com/michalosman" target="_blank" style="text-decoration: none; color: white;">originally created by @michalosman on github</a>
+        <a href="https://github.com/michalosman" target="_blank">Originally created by @michalosman on GitHub</a>
     </footer>
-    <script src="script.js"></script>
-  </body>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const grid = document.getElementById('grid');
+            const colorPicker = document.getElementById('colorPicker');
+            const colorBtn = document.getElementById('colorBtn');
+            const rainbowBtn = document.getElementById('rainbowBtn');
+            const eraserBtn = document.getElementById('eraserBtn');
+            const clearBtn = document.getElementById('clearBtn');
+            const sizeValue = document.getElementById('sizeValue');
+            const sizeSlider = document.getElementById('sizeSlider');
+            
+            let currentColor = colorPicker.value;
+            let currentMode = 'color';
+            let isDrawing = false;
+            
+            function setupGrid(size) {
+                grid.innerHTML = '';
+                grid.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+                grid.style.gridTemplateRows = `repeat(${size}, 1fr)`;
+                
+                for (let i = 0; i < size * size; i++) {
+                    const gridItem = document.createElement('div');
+                    gridItem.classList.add('grid-item');
+                    gridItem.addEventListener('mousedown', startDrawing);
+                    gridItem.addEventListener('mouseenter', draw);
+                    gridItem.addEventListener('mouseup', stopDrawing);
+                    grid.appendChild(gridItem);
+                }
+            }
+            
+            function startDrawing(e) {
+                isDrawing = true;
+                draw(e);
+            }
+            
+            function draw(e) {
+                if (!isDrawing) return;
+                
+                if (currentMode === 'rainbow') {
+                    const randomR = Math.floor(Math.random() * 256);
+                    const randomG = Math.floor(Math.random() * 256);
+                    const randomB = Math.floor(Math.random() * 256);
+                    e.target.style.backgroundColor = `rgb(${randomR}, ${randomG}, ${randomB})`;
+                } else if (currentMode === 'color') {
+                    e.target.style.backgroundColor = currentColor;
+                } else if (currentMode === 'eraser') {
+                    e.target.style.backgroundColor = 'white';
+                }
+            }
+            
+            function stopDrawing() {
+                isDrawing = false;
+            }
+            
+            function updateSizeValue(value) {
+                sizeValue.textContent = `${value} x ${value}`;
+            }
+            
+            function setActiveButton(button) {
+                colorBtn.classList.remove('active');
+                rainbowBtn.classList.remove('active');
+                eraserBtn.classList.remove('active');
+                button.classList.add('active');
+            }
+            
+            // Event listeners
+            colorPicker.addEventListener('input', (e) => {
+                currentColor = e.target.value;
+                if (currentMode === 'color') {
+                    setActiveButton(colorBtn);
+                }
+            });
+            
+            colorBtn.addEventListener('click', () => {
+                currentMode = 'color';
+                setActiveButton(colorBtn);
+            });
+            
+            rainbowBtn.addEventListener('click', () => {
+                currentMode = 'rainbow';
+                setActiveButton(rainbowBtn);
+            });
+            
+            eraserBtn.addEventListener('click', () => {
+                currentMode = 'eraser';
+                setActiveButton(eraserBtn);
+            });
+            
+            clearBtn.addEventListener('click', () => {
+                const gridItems = document.querySelectorAll('.grid-item');
+                gridItems.forEach(item => {
+                    item.style.backgroundColor = 'white';
+                });
+            });
+            
+            sizeSlider.addEventListener('input', (e) => {
+                const size = e.target.value;
+                updateSizeValue(size);
+                setupGrid(size);
+            });
+            
+            // Initialize
+            setupGrid(16);
+            updateSizeValue(16);
+            setActiveButton(colorBtn);
+            
+            // Prevent dragging
+            document.addEventListener('mousedown', (e) => {
+                if (e.target.classList.contains('grid-item')) {
+                    e.preventDefault();
+                }
+            });
+        });
+    </script>
+</body>
 </html>
