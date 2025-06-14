@@ -1,133 +1,234 @@
-<html>
-    <head>
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-7FN7LEVWXD"></script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7FN7LEVWXD"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-7FN7LEVWXD');
+    </script>
 
-          gtag('config', 'G-7FN7LEVWXD');
-        </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ruffle | Vexinity</title>
+    <link rel="shortcut icon" href="../../images/ico.ico" type="image/x-icon">
+    
+    <!-- Modern clean font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Ruffle | Seraph</title>
-        <link rel="shortcut icon" href="../../images/ico.ico" type="image/x-icon">
-        <script src="../../storage/js/cloak.js"></script>
-        
-        <style>
-            @font-face {
-                font-family: 'Main';
-                src: url('../../storage/fonts/ubuntu/Ubuntu.woff2') format('woff2'),
-                    url('../../storage/fonts/ubuntu//Ubuntu.woff') format('woff'),
-                    url('../../storage/fonts/ubuntu/Ubuntu.ttf') format('ttf'),
-                    url('../../storage/fonts/ubuntu/Ubuntu.otf') format('otf');
+    <style>
+        :root {
+            --primary-red: #ff3a3a;
+            --dark-red: #cc0000;
+            --bg-dark: #0f0f0f;
+            --text-light: #ffffff;
+            --text-gray: #aaaaaa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background-image: url('ruffle.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .upload {
+            padding: 30px;
+            background-color: rgba(26, 26, 26, 0.8);
+            border-radius: 12px;
+            max-width: 600px;
+            width: 90%;
+            margin: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--primary-red);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        #upload-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .file-upload-label {
+            padding: 12px 25px;
+            background-color: var(--primary-red);
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+
+        .file-upload-label:hover {
+            background-color: var(--dark-red);
+            transform: translateY(-2px);
+        }
+
+        button {
+            padding: 12px 30px;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            border: 2px solid var(--primary-red);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        button:hover {
+            background-color: var(--primary-red);
+            color: white;
+        }
+
+        .credit {
+            margin-top: 30px;
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        .credit a {
+            color: var(--primary-red);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .credit a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        #ruffle-container {
+            width: 100%;
+            height: 100vh;
+            display: none;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
             }
-
-            body {
-                margin: 0;
-                padding: 0;
-                background-color: black;
-                color: white;
-                background-image: url('ruffle.png');
-                background-size: cover;
-                background-repeat: no-repeat;
-            }
-
+            
             .upload {
-                font-family: 'Main', sans-serif;
-                text-align: center;
                 padding: 20px;
             }
+        }
+    </style>
+</head>
 
-            input {
-                background-color: black;
-                color: white;
-                font-family: 'Main', sans-serif;
-            }
+<body>
+    <script>
+        function loadLocalRuffle() {
+            var script = document.createElement('script');
+            script.src = '../../storage/ruffle/ruffle.js';
+            document.body.appendChild(script);
+        }
 
-            button {
-                color: white;
-                font-family: 'Main', sans-serif;
-                background-color: black;
-                border: 2px solid white;
-                border-radius: 16px;
-            }
+        var cdnScript = document.createElement('script');
+        cdnScript.src = 'https://unpkg.com/@ruffle-rs/ruffle';
+        cdnScript.onerror = loadLocalRuffle;
+        document.body.appendChild(cdnScript);
+    </script>
 
-            h1 {
-                font-size: 48px;
-            }
+    <div class="upload">
+        <h1>Ruffle Emulator</h1>
+        <p>Upload a SWF file to run it using the Ruffle Flash emulator</p>
+        
+        <form id="upload-form">
+            <label for="swf-upload" class="file-upload-label">Choose SWF File</label>
+            <input type="file" id="swf-upload" accept=".swf">
+            <button type="submit">Run Flash File</button>
+        </form>
+        
+        <p class="credit">
+            Tool developed by @a456pur, <a href="https://github.com/ruffle-rs/ruffle/graphs/contributors" target="_blank">Ruffle project credits here</a>
+        </p>
+    </div>
 
-            p {
-                font-size: 20px;
-            }
+    <div id="ruffle-container"></div>
 
-        </style>
-    </head>
+    <script>
+        window.RufflePlayer = window.RufflePlayer || {};
 
-    <body>
-        <script>
-            function loadLocalRuffle() {
-                var script = document.createElement('script');
-                script.src = '../../storage/ruffle/ruffle.js';
-                document.body.appendChild(script);
-            }
+        function loadSWF(filename) {
+            const ruffle = window.RufflePlayer.newest();
+            const player = ruffle.createPlayer();
+            const container = document.getElementById("ruffle-container");
+            player.id = "player";
+            player.style.width = "100%";
+            player.style.height = "100%";
+            container.innerHTML = "";
+            container.appendChild(player);
+            player.load(filename);
 
-            var cdnScript = document.createElement('script');
-            cdnScript.src = 'https://unpkg.com/@ruffle-rs/ruffle';
-            cdnScript.onerror = loadLocalRuffle;
-            document.body.appendChild(cdnScript);
-        </script>
+            document.querySelector('.upload').style.display = "none";
+            container.style.display = "block";
+        }
 
-        <div class="upload">
-            <h1>ruffle emulator</h1>
-            <p>upload a swf file to here and then run it using ruffle!</p>
-            <br>
-            <form id="upload-form">
-                <input type="file" id="swf-upload" accept=".swf">
-                <button type="submit">run flash file</button>
-            </form>
-            <br>
-            <p>// tool developed by @a456pur, <a href="https://github.com/ruffle-rs/ruffle/graphs/contributors" target="_blank" style="text-decoration: underline; color: white;">ruffle project credits here</a> \\ </p>
-        </div>
+        document.addEventListener("DOMContentLoaded", () => {
+            const uploadForm = document.getElementById("upload-form");
+            const swfUpload = document.getElementById("swf-upload");
+            const fileLabel = document.querySelector('.file-upload-label');
 
-        <div id="ruffle-container"></div>
-
-        <script>
-            window.RufflePlayer = window.RufflePlayer || {};
-
-            function loadSWF(filename) {
-                const ruffle = window.RufflePlayer.newest();
-                const player = ruffle.createPlayer();
-                const container = document.getElementById("ruffle-container");
-                player.id = "player";
-                player.style.width = "100vw";
-                player.style.height = "100vh";
-                container.innerHTML = "";
-                container.appendChild(player);
-                player.load(filename);
-
-                const uploadForm = document.getElementById("upload-form");
-                uploadForm.style.display = "none";
-
-                const uploadDiv = document.querySelector(".upload");
-                uploadDiv.style.display = "none";
-            }
-
-            window.addEventListener("load", (event) => {
-                const uploadForm = document.getElementById("upload-form");
-                const swfUpload = document.getElementById("swf-upload");
-
-                uploadForm.addEventListener('submit', function (e) {
-                    e.preventDefault();
-
-                    if (swfUpload.files.length === 0) {
-                        return;
-                    }
-
-                    const file = swfUpload.files[0];
-                    loadSWF(URL.createObjectURL(file));
-                });
+            swfUpload.addEventListener('change', function() {
+                if (this.files.length > 0) {
+                    fileLabel.textContent = this.files[0].name;
+                }
             });
-        </script>
-    </body>
+
+            uploadForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                if (swfUpload.files.length === 0) {
+                    alert('Please select a SWF file first');
+                    return;
+                }
+
+                const file = swfUpload.files[0];
+                loadSWF(URL.createObjectURL(file));
+            });
+        });
+    </script>
+</body>
 </html>
