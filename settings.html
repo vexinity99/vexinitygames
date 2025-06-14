@@ -1,170 +1,265 @@
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-7FN7LEVWXD"></script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7FN7LEVWXD"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-7FN7LEVWXD');
+    </script>
 
-          gtag('config', 'G-7FN7LEVWXD');
-        </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="images/ico.ico" type="image/x-icon">
+    <title>settings | vexinity games</title>
 
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="shortcut icon" href="images/ico.ico" type="image/x-icon">
-        <link rel="stylesheet" href="storage/css/settings.css">
-        <title>Settings | Seraph</title>
+    <!-- Modern clean font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-        <meta name="description" content="an open source games site hosting 500+ games, useful utilities, powerful settings + a clean user interface">
-        <meta property="og:site_name" content="seraph">
-        <meta property="og:title" content="seraph">
-        <meta property="og:type" content="website">
-        <meta property="og:description" content="an open source games site hosting 500+ games, useful utilities, powerful settings + a clean user interface">
+    <style>
+        :root {
+            --primary-red: #ff3a3a;
+            --dark-red: #cc0000;
+            --bg-dark: #0f0f0f;
+            --card-bg: #1a1a1a;
+            --text-light: #ffffff;
+            --text-gray: #aaaaaa;
+            --border-color: #333333;
+        }
 
-        <style>
-            button {
-                margin: 2px;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            padding: 20px;
+            text-align: center;
+        }
+
+        #content-side {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            color: var(--primary-red);
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        h2 {
+            color: var(--primary-red);
+            font-size: 1.5rem;
+            margin: 25px 0 15px;
+            font-weight: 600;
+        }
+
+        a {
+            color: var(--primary-red);
+            text-decoration: none;
+            transition: color 0.2s;
+            font-size: 18px;
+            margin-bottom: 30px;
+            display: inline-block;
+        }
+
+        a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .setting-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 400px;
+            margin-bottom: 20px;
+        }
+
+        select, input[type="text"], input[type="url"] {
+            width: 100%;
+            padding: 12px 15px;
+            margin: 8px 0;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background-color: var(--card-bg);
+            color: var(--text-light);
+            font-size: 16px;
+            outline: none;
+            transition: all 0.2s;
+            text-align: center;
+        }
+
+        select:focus, input[type="text"]:focus, input[type="url"]:focus {
+            border-color: var(--primary-red);
+            box-shadow: 0 0 0 2px rgba(255, 58, 58, 0.2);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        button {
+            background-color: var(--primary-red);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            min-width: 150px;
+        }
+
+        button:hover {
+            background-color: var(--dark-red);
+            transform: translateY(-2px);
+        }
+
+        #success, #success-panic {
+            color: #4CAF50;
+            margin: 10px 0;
+            font-size: 14px;
+        }
+
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 15px 0;
+        }
+
+        label {
+            margin: 10px 0;
+            color: var(--text-gray);
+            display: flex;
+            align-items: center;
+        }
+
+        input[type="radio"] {
+            margin-right: 8px;
+        }
+
+        p[style*="underline"] {
+            color: var(--text-light);
+            margin: 10px 0;
+        }
+
+        @media (max-width: 600px) {
+            #content-side {
+                padding: 10px;
             }
-        </style>
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .button-group {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            button {
+                width: 100%;
+            }
+        }
+    </style>
 
-<script>
-    if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function() {
-        navigator.serviceWorker.register('/offline-worker.js').then(function(registration) {
-            console.log('service worker initalised! scope:', registration.scope);
-
-            navigator.serviceWorker.addEventListener('message', function(event) {
-                if (event.data === 'cached') {
-                    document.getElementById('cache-status').style.display = 'block';
-                }
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/offline-worker.js').then(function(registration) {
+                    console.log('Service worker initialized! Scope:', registration.scope);
+        
+                    navigator.serviceWorker.addEventListener('message', function(event) {
+                        if (event.data === 'cached') {
+                            document.getElementById('cache-status').style.display = 'block';
+                        }
+                    });
+                }, function(error) {
+                    console.log('Error with service worker: ', error);
+                });
             });
-        }, function(error) {
-            console.log('ack, error with serviceworker! ', error);
-        });
-    });
-}
-</script>
+        }
+    </script>
+</head>
+<body>
+    <div id="content-side">
+        <h1>settings</h1>
+        <a href="index.html">go to homepage</a>
         
-  </head>
-  <body>
-        <div id="content-side">
-            <h1>settings</h1>
-            <a href="index.html" style="font-size: 18px;">go to homepage</a>
-            
-            <br>
-            <h2 style="margin: 0;">tab cloaking</h2>
-            <br>
+        <div class="setting-group">
+            <h2>tab cloaking</h2>
             <select id="presetSelect">
-                <option value="google">google</option>
-                <option value="googleclassroom">google classroom</option>
-                <option value="googledrive">google drive</option>
-                <option value="chrometab">chrome new tab</option>
-                <option value="gmail">gmail</option>
-                <option value="bing">bing</option>
-                <option value="desmos">desmos calculator</option>
-                <option value="wikipedia">wikipedia</option>
+                <option value="google">Google</option>
+                <option value="googleclassroom">Google Classroom</option>
+                <option value="googledrive">Google Drive</option>
+                <option value="chrometab">Chrome New Tab</option>
+                <option value="gmail">Gmail</option>
+                <option value="bing">Bing</option>
+                <option value="desmos">Clever</option>
+                <option value="wikipedia">Wikipedia</option>
             </select>
-        
-            <button id="saveButton">select cloak</button>
-            <button id="resetButton">reset cloak</button>
-            <p id="success" style="display: none;">success message here</p>
-            
-            <br>
-            <h2 style="margin: 0;">themes</h2>
-            <br>
-            <select id="theme-select">
-                <option value="seraph">seraph</option>
-                <option value="azurite">azurite</option>
-                <option value="retro">retro</option>
-                <option value="cosmic">cosmic</option>
-                <option value="molten">molten</option>
-                <option value="amethyst">amethyst</option>
-                <option value="ethereal">ethereal</option>
-                <option value="subzero">subzero</option>
-                <option value="metro">metro</option>
-                <option value="ghostly">ghostly</option>
-                <option value="custom">custom</option>
-            </select>
-        
-            <button id="apply-theme">apply theme</button>
-        
-            <div id="custom-theme-settings" style="display: none;">
-                <h2 style="text-decoration: underline;">theme customisation</h2>
-                <div class="theme-property">
-                    <label for="background-image">background image url:</label>
-                    <input type="text" id="background-image" value="https://raw.githubusercontent.com/a456pur/seraph/main/images/backgrounds/seraph/homebg.png">
-                </div>
-        
-                <div class="theme-property">
-                    <label for="font-family">font family:</label>
-                    <input type="text" id="font-family" value="Ubuntu">
-                </div>
-        
-                <div class="theme-property">
-                    <label for="text-color">text colour:</label>
-                    <input type="color" id="text-color" value="#000000">
-                </div>
-        
-                <div class="theme-property">
-                    <label for="background-color">background colour:</label>
-                    <input type="color" id="background-color">
-                </div>
-        
-                <div class="theme-property">
-                    <label for="border-color1">border colour:</label>
-                    <input type="color" id="border-color1">
-                </div>
-        
-                <div class="theme-property">
-                    <label for="border-color2">secondary border colour:</label>
-                    <input type="color" id="border-color2">
-                </div>
-        
-                <div class="theme-property">
-                    <label for="hover-color">hover colour:</label>
-                    <input type="color" id="hover-color">
-                </div>
-        
-                <div class="theme-property">
-                    <label for="text-glow">text glow colour:</label>
-                    <input type="color" id="text-glow">
-                </div>
-        
-                <button id="apply-custom-theme" style="font-size: 18px;">apply settings</button>
-                <br>
-                <button id="import-theme" style="font-size: 18px; width: 120px;">import</button>
-                <button id="export-theme" style="font-size: 18px; width: 120px;">export</button>
+            <div class="button-group">
+                <button id="saveButton">select Cloak</button>
+                <button id="resetButton">reset Cloak</button>
             </div>
-
-            <br>
-            <h2 style="margin-bottom: 20px;">panic mode</h2>
-            <input type="text" id="panicKey" placeholder="choose a key combination" readonly>
-            <input type="url" id="panicUrl" placeholder="https://www.desmos.com/scientific">
-            <button onclick="saveSettings()">set panic key</button>
-            <p id="success-panic" style="display: none;">success message here</p>
-            
-
-            <br>
-            <h2 style="margin-bottom: 20px;">data management</h2>
-            <button onclick="importData()">import data</button>
-            <button onclick="exportData()">export data</button>
-            <button onclick="clearData()">clear data</button>
-
-            <br>
-            <h2 style="margin-bottom: 5px;">other</h2>
-            <p style="text-decoration: underline;">link behaviour</p>
-            <label>
-                <input type="radio" name="openBlankSetting" value="true"> open links in new tab
-            </label>
-            <label>
-                <input type="radio" name="openBlankSetting" value="false"> open links in same tab
-            </label>
-
-            <br>
-            <br>
+            <p id="success" style="display: none;">settings saved successfully!</p>
+        </div>
         
+        <div class="setting-group">
+            <h2>Panic Mode</h2>
+            <input type="text" id="panicKey" placeholder="Choose a key combination" readonly>
+            <input type="url" id="panicUrl" placeholder="https://clever.com">
+            <div class="button-group">
+                <button onclick="saveSettings()">set panic key</button>
+            </div>
+            <p id="success-panic" style="display: none;">panic settings saved!</p>
+        </div>
+        
+        <div class="setting-group">
+            <h2>data management</h2>
+            <div class="button-group">
+                <button onclick="importData()">import data</button>
+                <button onclick="exportData()">export data</button>
+                <button onclick="clearData()">clear data</button>
+            </div>
+        </div>
+
+        <div class="setting-group">
+            <h2>other</h2>
+            <p style="text-decoration: underline;">link behavior</p>
+            <div class="radio-group">
+                <label>
+                    <input type="radio" name="openBlankSetting" value="true"> Open links in new tab
+                </label>
+                <label>
+                    <input type="radio" name="openBlankSetting" value="false"> Open links in same tab
+                </label>
+            </div>
+        </div>
+
         <script src="storage/js/cloak.js"></script>
         <script src="storage/js/data.js"></script>
         <script src="/storage/js/settings.js"></script>
-  </body>
+    </div>
+</body>
 </html>
