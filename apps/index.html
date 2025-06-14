@@ -1,31 +1,224 @@
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-7FN7LEVWXD"></script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7FN7LEVWXD"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-7FN7LEVWXD');
+    </script>
 
-          gtag('config', 'G-7FN7LEVWXD');
-        </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../images/ico.ico" type="image/x-icon">
+    <title>apps | vexinity games</title>
 
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="shortcut icon" href="../images/ico.ico" type="image/x-icon">
-        <link rel="stylesheet" href="/storage/css/apps.css">
-        <title>Apps | Seraph</title>
+    <!-- Modern clean font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-        <meta name="description" content="an open source games site hosting 500+ games, useful utilities, powerful settings + a clean user interface">
-        <meta property="og:site_name" content="seraph">
-        <meta property="og:title" content="seraph">
-        <meta property="og:type" content="website">
-        <meta property="og:description" content="an open source games site hosting 500+ games, useful utilities, powerful settings + a clean user interface">
+    <style>
+        :root {
+            --primary-red: #ff3a3a;
+            --dark-red: #cc0000;
+            --bg-dark: #0f0f0f;
+            --card-bg: #1a1a1a;
+            --text-light: #ffffff;
+            --text-gray: #aaaaaa;
+        }
 
-        <script>
-            if ('serviceWorker' in navigator) {
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: var(--primary-red);
+            font-size: 2.5rem;
+            margin: 20px 0;
+            font-weight: 700;
+        }
+
+        #search {
+            width: 100%;
+            max-width: 500px;
+            padding: 14px 20px;
+            margin: 10px auto;
+            border-radius: 50px;
+            border: none;
+            background-color: #2a2a2a;
+            color: white;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.2s;
+            display: block;
+        }
+
+        #search:focus {
+            background-color: #333;
+            box-shadow: 0 0 0 2px var(--primary-red);
+        }
+
+        .linkp {
+            margin: 20px 0;
+            color: var(--text-gray);
+        }
+
+        .linkp a {
+            color: var(--primary-red);
+            text-decoration: none;
+            margin: 0 10px;
+            transition: all 0.2s;
+            font-weight: 500;
+            position: relative;
+            padding-bottom: 2px;
+        }
+
+        .linkp a:hover {
+            color: white;
+        }
+
+        .linkp a:hover::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-red);
+            animation: underlineFade 0.3s ease-out;
+        }
+
+        @keyframes underlineFade {
+            from { width: 0; opacity: 0; }
+            to { width: 100%; opacity: 1; }
+        }
+
+        .button-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .button {
+            position: relative;
+            height: 200px;
+            border-radius: 12px;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.3s;
+            border: 1px solid #333;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .button:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-red);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .button::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 70%;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            z-index: 1;
+        }
+
+        .button h2 {
+            position: relative;
+            color: white;
+            padding: 15px;
+            margin: 0;
+            font-size: 1.3rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .button p {
+            position: relative;
+            color: #e0e0e0;
+            padding: 0 15px 15px;
+            margin: 0;
+            font-size: 0.9rem;
+            z-index: 2;
+            line-height: 1.5;
+        }
+
+        footer {
+            margin: 40px 0 20px;
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .button-container {
+                grid-template-columns: 1fr;
+                padding: 0 10px;
+            }
+            
+            .button {
+                height: 180px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Animation for hover effects */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .button {
+            animation: fadeIn 0.5s ease-out forwards;
+            opacity: 0;
+        }
+
+        .button:nth-child(1) { animation-delay: 0.1s; }
+        .button:nth-child(2) { animation-delay: 0.2s; }
+        .button:nth-child(3) { animation-delay: 0.3s; }
+        .button:nth-child(4) { animation-delay: 0.4s; }
+        .button:nth-child(5) { animation-delay: 0.5s; }
+        .button:nth-child(6) { animation-delay: 0.6s; }
+        .button:nth-child(7) { animation-delay: 0.7s; }
+        .button:nth-child(8) { animation-delay: 0.8s; }
+        .button:nth-child(9) { animation-delay: 0.9s; }
+        .button:nth-child(10) { animation-delay: 1.0s; }
+        .button:nth-child(11) { animation-delay: 1.1s; }
+        .button:nth-child(12) { animation-delay: 1.2s; }
+        .button:nth-child(13) { animation-delay: 1.3s; }
+        .button:nth-child(14) { animation-delay: 1.4s; }
+        .button:nth-child(15) { animation-delay: 1.5s; }
+    </style>
+
+    <script>
+        if ('serviceWorker' in navigator) {
             window.addEventListener('load', function() {
                 navigator.serviceWorker.register('/offline-worker.js').then(function(registration) {
-                    console.log('service worker initalised! scope:', registration.scope);
+                    console.log('Service worker initialized! Scope:', registration.scope);
         
                     navigator.serviceWorker.addEventListener('message', function(event) {
                         if (event.data === 'cached') {
@@ -33,139 +226,174 @@
                         }
                     });
                 }, function(error) {
-                    console.log('ack, error with serviceworker! ', error);
+                    console.log('Error with service worker: ', error);
                 });
             });
         }
-        </script>
-    </head>
 
-    <body>
-        <h1>apps</h1>
-        <input type="text" id="search" placeholder="⌕ search" autocomplete="off">
-        <p class="linkp"><a href="/index.html">homepage</a> •  <a href="https://github.com/a456pur/seraph" target="_blank">github</a> •  <a href="https://discord.gg/ZyZDmx3zuQ" target="_blank">discord</a> •  <a id="openBlankLink">open blank</a></p>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Search functionality
+            const searchInput = document.getElementById('search');
+            const appCards = document.querySelectorAll('.button-container a');
+            
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                
+                appCards.forEach(card => {
+                    const title = card.querySelector('h2').textContent.toLowerCase();
+                    const description = card.querySelector('p').textContent.toLowerCase();
+                    
+                    if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
 
-        <div class="button-container">
-            <a target="_blank" href="ruffle/index.html">
-                <div class="button" style="background-image: url('../images/thumbnails/ruffle.jpg');">
-                    <h2>ruffle</h2>
-                    <p>emulate thousands of flash games with ruffle! upload a file here and run it directly inside seraph</p>
-                </div>
-            </a>   
+            // Open blank tab functionality
+            document.getElementById('openBlankLink').addEventListener('click', function(e) {
+                e.preventDefault();
+                const newTab = window.open('about:blank', '_blank');
+                if (newTab) {
+                    const iframe = document.createElement('iframe');
+                    iframe.src = window.location.href;
+                    iframe.style.cssText = 'width:100%;height:100%;border:none;';
+                    newTab.document.body.appendChild(iframe);
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>Apps</h1>
+    <input type="text" id="search" placeholder="⌕ Search apps..." autocomplete="off">
+    <p class="linkp">
+        <a href="/index.html">homepage</a> •  
+        <a href="https://vexinity99.vercel.app" target="_blank">profile</a> •  
+        <a href="https://discord.gg/ZyZDmx3zuQ" target="_blank">discord</a> •  
+        <a id="openBlankLink">open blank</a>
+    </p>
 
-            <a target="_blank" href="emulatorjs/index.html">
-                <div class="button" style="background-image: url('../images/thumbnails/emulatorjs.jpg');">
-                    <h2>emulatorjs</h2>
-                    <p>run hundreds of roms from popular retro game consoles (for example: game boy advance, snes, game boy, nes, atari, nintendo ds, n64, atari 2600)</p>
-                </div>
-            </a>  
-            <a target="_blank" href="fluidsim/index.html">
-                <div class="button" style="background-image: url('../images/thumbnails/fluidsim.jpg');">
-                    <h2>webgl fluids</h2>
-                    <p>a full fluid simulation ran entirely in webgl with support for mobile devices</p>
-                </div>
-            </a> 
+    <div class="button-container">
+        <a target="_blank" href="ruffle/index.html">
+            <div class="button" style="background-image: url('../images/thumbnails/ruffle.jpg');">
+                <h2>ruffle</h2>
+                <p>emulate lots of flash games.</p>
+            </div>
+        </a>   
 
-            <a target="_blank" href="thirtydollarwebsite/index.html">
-                <div class="button" style="background-image: url('../images/thumbnails/thirtydollarwebsite.jpg');">
-                    <h2>thirty dollar website</h2>
-                    <p>a tool which can be used to make music entirely through meme sound effects and simple instruments</p>
-                </div>
-            </a> 
+        <a target="_blank" href="emulatorjs/index.html">
+            <div class="button" style="background-image: url('../images/thumbnails/emulatorjs.jpg');">
+                <h2>EmulatorJS</h2>
+                <p>emulate lots of ROMs.</p>
+            </div>
+        </a>  
 
-            <a target="_blank" href="windows11/index.html">
-                <div class="button" style="background-image: url('../images/thumbnails/windows11.jpg');">
-                    <h2>windows 11</h2>
-                    <p>a recreation of windows 11 inside of react, which can be run through a web browwser</p>
-                </div>
-            </a> 
+        <a target="_blank" href="fluidsim/index.html">
+            <div class="button" style="background-image: url('../images/thumbnails/fluidsim.jpg');">
+                <h2>WebGL Fluids</h2>
+                <p>fluid simulator</p>
+            </div>
+        </a> 
 
-            <a target="_blank" href="turbowarp/index.html">
-                <div class="button" style="background-image: url('../images/thumbnails/turbowarp.jpg');">
-                    <h2>turbowarp</h2>
-                    <p>a scratch mod which introduces lots of quality of life changes + compiles projects to javascript, making them run faster</p>
-                </div>
-            </a> 
+        <a target="_blank" href="thirtydollarwebsite/index.html">
+            <div class="button" style="background-image: url('../images/thumbnails/thirtydollarwebsite.jpg');">
+                <h2>Thirty Dollar Website</h2>
+                <p>create music using meme sound effects and simple instruments.</p>
+            </div>
+        </a> 
 
-            <a target="_blank" href="turbowarppkg/index.html">
-                <div class="button" style="background-image: url('../images/thumbnails/turbowarppkg.jpg');">
-                    <h2>turbowarp packager</h2>
-                    <p>a tool that converts scratch projects into HTML files, zip archives, or applications for windows, macos, and linux.</p>
-                </div>
-            </a> 
+        <a target="_blank" href="windows11/index.html">
+            <div class="button" style="background-image: url('../images/thumbnails/windows11.jpg');">
+                <h2>Windows 11</h2>
+                <p>a recreation of Windows 11.</p>
+            </div>
+        </a> 
 
-            <a target="_blank" href="turbowarpunpkg/index.html">
-                <div class="button" style="background-image: url('../images/thumbnails/turbowarpunpkg.jpg');">
-                    <h2>turbowarp unpackager</h2>
-                    <p>a tool that unpackages html/zip files generated by turbowarp's packager, forkphorous or htmlfier into their original scratch project.</p>
-                </div>
-            </a> 
+        <a target="_blank" href="turbowarp/index.html">
+            <div class="button" style="background-image: url('../images/thumbnails/turbowarp.jpg');">
+                <h2>TurboWarp</h2>
+                <p>Scratch mod with QoL changes and JavaScript compilation for better performance.</p>
+            </div>
+        </a> 
 
-            <a target="_blank" href="weavesilk/index.html">
-                <div class="button" style="background-image: url('../images/thumbnails/weavesilk.jpg');">
-                    <h2>weavesilk</h2>
-                    <p>a web application allowing you to create beautiful flowing artwork</p>
-                </div>
-            </a> 
+        <a target="_blank" href="turbowarppkg/index.html">
+            <div class="button" style="background-image: url('../images/thumbnails/turbowarppkg.jpg');">
+                <h2>TurboWarp Packager</h2>
+                <p>Convert Scratch projects into HTML files, zips, or desktop apps.</p>
+            </div>
+        </a> 
 
-            <a target="_blank" href="webretro/index.html">
-                <div class="button" style="background-image: url('../images/thumbnails/webretro.jpg');">
-                    <h2>webretro</h2>
-                    <p>upload roms/games directly to an assortment of older retro (1990-2000's) consoles</p>
-                </div>
-            </a> 
+        <a target="_blank" href="turbowarpunpkg/index.html">
+            <div class="button" style="background-image: url('../images/thumbnails/turbowarpunpkg.jpg');">
+                <h2>TurboWarp Unpackager</h2>
+                <p>Extract packaged Scratch projects back to their original form.</p>
+            </div>
+        </a> 
 
-            <a target="_blank" href="htmlcoder/index.html">
-                <div class="button" style="background-image: url('../images/thumbnails/htmleditor.jpg');">
-                    <h2>html coder</h2>
-                    <p>a fully functioning html code editor! upload from your device, or create static html pages from scratch </p>
-                </div>
-            </a> 
+        <a target="_blank" href="weavesilk/index.html">
+            <div class="button" style="background-image: url('../images/thumbnails/weavesilk.jpg');">
+                <h2>WeaveSilk</h2>
+                <p>Create beautiful flowing digital artwork.</p>
+            </div>
+        </a> 
 
-            <a target="_blank" href="v86/index.html">
-                <div class="button" style="background-image: url('../images/thumbnails/v86.jpg');">
-                    <h2>v86</h2>
-                    <p>online emulation of x86-compatible cpu's and hardware - translated to webassembly for optimal performance </p>
-                </div>
-            </a> 
+        <a target="_blank" href="webretro/index.html">
+            <div class="button" style="background-image: url('../images/thumbnails/webretro.jpg');">
+                <h2>WebRetro</h2>
+                <p>Upload ROMs to emulate retro consoles from the 90s-2000s.</p>
+            </div>
+        </a> 
 
-            <a target="_blank" href="calculator/index.html">
-                <div class="button" style="background-image: url('../images/thumbnails/calculator.jpg');">
-                    <h2>calculator</h2>
-                    <p>a simple calculator, allowing you to perform simple addition, subtraction, multiplication and division </p>
-                </div>
-            </a> 
+        <a target="_blank" href="htmlcoder/index.html">
+            <div class="button" style="background-image: url('../images/thumbnails/htmleditor.jpg');">
+                <h2>HTML Coder</h2>
+                <p>A fully functional HTML editor - upload files or create from scratch.</p>
+            </div>
+        </a> 
 
-            <a target="_blank" href="etchasketch/index.html">
-                <div class="button" style="background-image: url('../images/thumbnails/etchasketch.jpg');">
-                    <h2>etch a sketch</h2>
-                    <p>create digital pixel drawings - mimicking the experience of an etch-a-sketch with quality of life features </p>
-                </div>
-            </a> 
+        <a target="_blank" href="v86/index.html">
+            <div class="button" style="background-image: url('../images/thumbnails/v86.jpg');">
+                <h2>v86</h2>
+                <p>Emulate x86-compatible CPUs and hardware in your browser.</p>
+            </div>
+        </a> 
 
-            <a target="_blank" href="zipopener/index.html">
-                <div class="button" style="background-image: url('../images/thumbnails/zipopener.jpg');">
-                    <h2>zip opener</h2>
-                    <p>directly upload and view/download individual files inside a zip archive </p>
-                </div>
-            </a> 
+        <a target="_blank" href="calculator/index.html">
+            <div class="button" style="background-image: url('../images/thumbnails/calculator.jpg');">
+                <h2>Calculator</h2>
+                <p>A simple calculator for basic arithmetic operations.</p>
+            </div>
+        </a> 
 
-            <a target="_blank" href="godoblocks/index.html">
-                <div class="button" style="background-image: url('../images/thumbnails/godoblocks.jpg');">
-                    <h2>godoblocks</h2>
-                    <p>a mimick of the 2005 roblox beta era - recreated entirely in godot  </p>
-                </div>
-            </a> 
+        <a target="_blank" href="etchasketch/index.html">
+            <div class="button" style="background-image: url('../images/thumbnails/etchasketch.jpg');">
+                <h2>Etch A Sketch</h2>
+                <p>Create digital pixel drawings with Etch-a-Sketch style.</p>
+            </div>
+        </a> 
 
-        </div>
+        <a target="_blank" href="zipopener/index.html">
+            <div class="button" style="background-image: url('../images/thumbnails/zipopener.jpg');">
+                <h2>Zip Opener</h2>
+                <p>Upload and view/download individual files from ZIP archives.</p>
+            </div>
+        </a> 
 
-        <p> // all apps hosted on this website are complete copyright & property of their respective owners \\</p>
+        <a target="_blank" href="godoblocks/index.html">
+            <div class="button" style="background-image: url('../images/thumbnails/godoblocks.jpg');">
+                <h2>GodotBlocks</h2>
+                <p>a recreation of 2005 Roblox beta era in Godot engine.</p>
+            </div>
+        </a> 
+    </div>
 
-        
-        
-        <script src="/storage/js/cloak.js"></script>
-        <script src="/storage/js/theme.js"></script>
-        <script src="/storage/js/cookie.js"></script>
-        <script src="/storage/js/apps.js"></script>
-    </body>
+    <footer>
+        // All apps hosted on this website are complete copyright & property of their respective owners \\
+    </footer>
+
+    <script src="/storage/js/cloak.js"></script>
+    <script src="/storage/js/cookie.js"></script>
+</body>
 </html>
