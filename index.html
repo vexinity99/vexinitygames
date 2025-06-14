@@ -12,37 +12,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="/images/ico.ico" type="image/x-icon">
-    <title>Vexinity Games</title>
+    <title>vexinity games</title>
 
-    <meta name="description" content="Vexinity Games - Premium gaming experience">
-    <meta property="og:site_name" content="Vexinity Games">
-    <meta property="og:title" content="Vexinity Games">
+    <meta name="description" content="vexinity games - premium school experience">
+    <meta property="og:site_name" content="vexinity games">
+    <meta property="og:title" content="vexinity games">
     <meta property="og:type" content="website">
-    <meta property="og:description" content="Premium gaming experience by Vexinity">
+    <meta property="og:description" content="premium school experience by vexinity">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --primary-blue: #1a73e8;
-            --dark-blue: #0d47a1;
-            --light-blue: #e8f0fe;
-            --accent-blue: #4285f4;
-            --text-dark: #202124;
+            --primary-red: #d32f2f;
+            --dark-red: #9a0007;
+            --light-red: #ffcdd2;
+            --accent-red: #f44336;
             --text-light: #f8f9fa;
-            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --text-dark: #121212;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
             --transition: all 0.3s ease;
+            --bg-dark: #121212;
+            --bg-darker: #0a0a0a;
+            --card-bg: #1e1e1e;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
         }
 
         body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background-color: var(--bg-dark);
             min-height: 100vh;
-            color: var(--text-dark);
+            color: var(--text-light);
             line-height: 1.6;
         }
 
@@ -52,7 +57,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: rgba(0, 0, 0, 0.85);
             z-index: 100;
             display: none;
         }
@@ -62,7 +67,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background-color: white;
+            background-color: var(--card-bg);
             padding: 2rem;
             border-radius: 12px;
             box-shadow: var(--shadow);
@@ -71,6 +76,7 @@
             width: 500px;
             text-align: center;
             display: none;
+            border: 1px solid #333;
         }
 
         #updPopup img {
@@ -79,7 +85,7 @@
         }
 
         #updPopup h2 {
-            color: var(--dark-blue);
+            color: var(--primary-red);
             margin: 1rem 0;
         }
 
@@ -87,6 +93,7 @@
             text-align: left;
             margin: 1rem 0;
             padding: 0 1rem;
+            color: #e0e0e0;
         }
 
         #updContent ul {
@@ -101,7 +108,7 @@
 
         #updContent li:before {
             content: "•";
-            color: var(--accent-blue);
+            color: var(--accent-red);
             position: absolute;
             left: 0;
         }
@@ -111,7 +118,7 @@
         }
 
         #updConfirm {
-            background-color: var(--primary-blue);
+            background-color: var(--primary-red);
             color: white;
             border: none;
             padding: 0.8rem 2rem;
@@ -123,7 +130,7 @@
         }
 
         #updConfirm:hover {
-            background-color: var(--dark-blue);
+            background-color: var(--dark-red);
             transform: translateY(-2px);
         }
 
@@ -141,7 +148,7 @@
         .logo {
             font-size: 3.5rem;
             font-weight: 700;
-            color: var(--dark-blue);
+            color: var(--primary-red);
             margin-bottom: 1rem;
             position: relative;
             display: inline-block;
@@ -155,13 +162,13 @@
             transform: translateX(-50%);
             width: 80px;
             height: 4px;
-            background: var(--accent-blue);
+            background: var(--accent-red);
             border-radius: 2px;
         }
 
         .tagline {
             font-size: 1.2rem;
-            color: #5f6368;
+            color: #b0b0b0;
             margin-bottom: 2rem;
         }
 
@@ -173,20 +180,21 @@
         }
 
         .feature-button {
-            background: white;
+            background: var(--card-bg);
             border-radius: 12px;
             padding: 1.5rem;
             text-align: center;
             cursor: pointer;
             transition: var(--transition);
             box-shadow: var(--shadow);
-            border: 2px solid transparent;
+            border: 1px solid #333;
         }
 
         .feature-button:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            border-color: var(--accent-blue);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            border-color: var(--primary-red);
+            background: #252525;
         }
 
         .feature-button img {
@@ -194,20 +202,23 @@
             height: 60px;
             margin-bottom: 1rem;
             transition: var(--transition);
+            filter: brightness(0.8) saturate(0.8);
         }
 
         .feature-button:hover img {
             transform: scale(1.1);
+            filter: brightness(1) saturate(1.2) hue-rotate(-10deg);
         }
 
         .feature-button h3 {
-            color: var(--dark-blue);
+            color: var(--primary-red);
             margin-bottom: 0.5rem;
             font-size: 1.3rem;
+            font-weight: 600;
         }
 
         .feature-button p {
-            color: #5f6368;
+            color: #b0b0b0;
             font-size: 0.9rem;
         }
 
@@ -225,7 +236,7 @@
         }
 
         .link-group a {
-            color: var(--primary-blue);
+            color: var(--primary-red);
             text-decoration: none;
             font-weight: 500;
             transition: var(--transition);
@@ -234,27 +245,28 @@
         }
 
         .link-group a:hover {
-            color: var(--dark-blue);
-            background-color: var(--light-blue);
+            color: var(--light-red);
+            background-color: rgba(211, 47, 47, 0.1);
         }
 
         footer {
             text-align: center;
             margin-top: 3rem;
             padding-top: 2rem;
-            border-top: 1px solid #e0e0e0;
-            color: #5f6368;
+            border-top: 1px solid #333;
+            color: #b0b0b0;
             font-size: 0.9rem;
         }
 
         footer a {
-            color: var(--primary-blue);
+            color: var(--primary-red);
             text-decoration: none;
             font-weight: 500;
         }
 
         footer a:hover {
             text-decoration: underline;
+            color: var(--light-red);
         }
 
         @media (max-width: 768px) {
@@ -272,7 +284,6 @@
             }
         }
 
-        /* Animation for logo */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -282,7 +293,6 @@
             animation: fadeIn 1s ease-out forwards;
         }
 
-        /* Animation for buttons */
         .feature-button:nth-child(1) { animation: fadeIn 0.8s ease-out 0.2s forwards; opacity: 0; }
         .feature-button:nth-child(2) { animation: fadeIn 0.8s ease-out 0.4s forwards; opacity: 0; }
         .feature-button:nth-child(3) { animation: fadeIn 0.8s ease-out 0.6s forwards; opacity: 0; }
@@ -293,15 +303,15 @@
     <div id="updPopup">
         <img src="/images/other/v10image.jpg" style="width: 90%;">
         <br><br>
-        <h2>Release Notes</h2>
+        <h2>release notes</h2>
 
         <div id="updContent">
             <ul>
-                <li>The Release
+                <li>the release
                     <ul>
-                        <li>The website has finally been released</li>
-                        <li>Tons of games</li>
-                        <li>Lots of other stuff too</li>
+                        <li>the website has finally been released</li>
+                        <li>tons of games</li>
+                        <li>lots of other stuff too</li>
                     </ul>
                 </li>
             </ul>
@@ -311,28 +321,28 @@
 
     <div class="container">
         <header>
-            <div class="logo">Vexinity Games</div>
-            <div class="tagline">Premium gaming experience</div>
+            <div class="logo">vexinity games</div>
+            <div class="tagline">premium school experience</div>
         </header>
 
         <main>
             <div class="button-container">
                 <div class="feature-button" onclick="window.location='games/index.html';">
                     <img src="images/other/controller.png" alt="Games">
-                    <h3>Games</h3>
-                    <p>Explore our collection of premium games</p>
+                    <h3>games</h3>
+                    <p>check out the unblocked games</p>
                 </div>
             
                 <div class="feature-button" onclick="window.location='apps/index.html';">
                     <img src="images/other/apps.png" alt="Apps">
-                    <h3>Apps</h3>
-                    <p>Useful applications for your needs</p>
+                    <h3>apps</h3>
+                    <p>useful unblocked stuff</p>
                 </div>
 
                 <div class="feature-button" onclick="window.location='settings.html';">
                     <img src="images/other/settings.png" alt="Settings">
-                    <h3>Settings</h3>
-                    <p>Customize your experience</p>
+                    <h3>settings</h3>
+                    <p>hide your tabs + add themes</p>
                 </div>
             </div>
 
@@ -351,7 +361,7 @@
         </main>
 
         <footer>
-            <p>Website created by <a href="https://guns.lol/vexinity99" target="_blank">Vexinity</a> based on Seraph</p>
+            <p>Website created by <a href="https://guns.lol/vexinity99" target="_blank">vexinity</a> based on Seraph</p>
         </footer>
     </div>
 
