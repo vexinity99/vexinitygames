@@ -51,9 +51,9 @@ document.addEventListener("DOMContentLoaded", function() {
             favicon: "/images/icons/gmail.ico",
             title: "Gmail"
         },
-        desmos: {
-            favicon: "/images/icons/desmos.ico",
-            title: "Desmos | Graphing Calculator"
+        clever: {
+            favicon: "/images/icons/clever.ico",
+            title: "Clever"
         },
         googleclassroom: {
             favicon: "/images/icons/googleclassroom.ico",
@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 (function() {
     const panicKey = localStorage.getItem('panicKey');
-    const panicUrl = localStorage.getItem('panicUrl') || 'https://www.desmos.com/scientific';
+    const panicUrl = localStorage.getItem('panicUrl') || 'https://clever.com';
 
     if (!panicKey) {
         return;
